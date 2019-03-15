@@ -7,32 +7,34 @@ EAPI=4
 inherit eutils java-pkg-2
 
 SRC_PN="yEd"
-SRC_P="${SRC_PN}-${PV}"
+#FIXME
+MY_PV="${PV}.1"
+SRC_P="${SRC_PN}-${MY_PV}"
 MY_PN="yed"
-S="${WORKDIR}/${MY_PN}-${PV}"
+S="${WORKDIR}/${MY_PN}-${MY_PV}"
 
 DESCRIPTION="Effective high-quality diagrams editor"
 HOMEPAGE="http://www.yworks.com/en/products_yed_about.html"
 SRC_URI="${SRC_P}.zip"
-DOWNLOAD_URL="http://www.yworks.com/en/products_download.php?file=${SRC_URI}"
+DOWNLOAD_URL="http://www.yworks.com/downloads?file=${SRC_URI}"
 
 LICENSE="yEd-1.1"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-RDEPEND=">=virtual/jre-1.7"
+RDEPEND=">=virtual/jre-1.8"
 
 DEPEND="app-arch/unzip ${RDEPEND}"
 
 RESTRICT="fetch"
 
 pkg_nofetch() {
-	eerror "${SRC_URI} not found!"
-	echo
-	elog "Please download the ${SRC_URI} from"
+	elog "Please download ${SRC_URI} and move it to"
+	elog "your distfiles directory:"
+	elog ""
 	elog "  ${DOWNLOAD_URL}"
-	elog "and place it in ${DISTDIR}."
+	elog ""
 }
 
 src_install() {
